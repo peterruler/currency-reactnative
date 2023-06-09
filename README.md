@@ -32,11 +32,6 @@ https://reactnavigation.org/docs/navigating
 # dependencies
 
 see package.json
- 
- 
-# demo snack on expo
-
-https://snack.expo.dev/@petethegreat/super-trumpf
 
 # install expo
 
@@ -44,8 +39,15 @@ https://snack.expo.dev/@petethegreat/super-trumpf
 - `npm install -g npm@9.7.1`
 - `yarn`
 - `yarn global add expo-cli@6.3.2`
-
+- `yarn install`
+- `sudo expo update 48.0.0`
+- `expo upgrade`
 # rest api
 
 - https://app.freecurrencyapi.com/dashboard
 - login with gmail
+
+# demo snack on expo
+
+- https://snack.expo.dev/@petethegreat/a805aa
+- see also: https://snack.expo.dev/@petethegreat/super-trumpf
