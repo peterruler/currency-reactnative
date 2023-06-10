@@ -16,8 +16,8 @@ export default function List({ navigation }) {
       json = data.data;
       result = [];
       for (key in json) {
-        let str = {currencyCode:key, exchangeRate: json[key]}
-        result.push(str);
+        let obj = {currencyCode : key, exchangeRate : json[key]}
+        result.push(obj);
       }
       setCurrencies(result);
     }
