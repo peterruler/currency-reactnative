@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, Text, StyleSheet } from 'react-native';
 import { Input, Button } from 'react-native-elements';
+import CurrencyCountryMap from '../../../shared/models/CurrencyMap';
 import Currency from '../../../shared/models/Currency';
 import styles from './Detail.styles';
 
 export default function Form ({ route, navigation }) {
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    text: {
+      fontSize: 25,
+      fontWeight: '500',
+    },
+  });
+
   const width = 250;
   const marginTop = 20;
   const marginLeft = -10;
@@ -13,7 +25,9 @@ export default function Form ({ route, navigation }) {
     currencyCode: '',
     exchangeRate: ''
   });
-
+  const [val, setVal] = useState();
+  const [valResult, setValResult] = useState();
+  
   /* 2. Get the param */
   const { currencyCode, exchangeRate} = route.params; // currencyCode: item.currencyCode, exchangeRate: item.exchangeRate 
 
@@ -29,37 +43,30 @@ export default function Form ({ route, navigation }) {
     fetchData();
   }, [currencyCode]);
 
+  useEffect(() => {
+    calculate();
+  }, [val]);
 
-  async function back() {
-    goBack();
+  const calculate = () => {
+    if(typeof val !== 'undefined') {
+      setValResult(currency.exchangeRate * val);
+    }
   }
 
-  const createChangeHandler = name => text =>
-  setCurrencies(prevCurrency=> ({
-      ...prevCurrency,
-      [name]: name !== name ? parseFloat(text) : text,
-    }));
-
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
+      <Text style={styles.text}>{CurrencyCountryMap.get(currency.currencyCode)} in US Dollar mit Kurs {currency.exchangeRate.toString()}</Text>
       <Input
-        label="Code"
-        placeholder="Code"
-        value={currency.currencyCode}
+        label="Betrag"
         containerStyle={{ width, marginTop, marginLeft }}
-        onChangeText={createChangeHandler('currencyCode')}
+        defaultValue={val}
+        onChangeText={
+          newVal => setVal(newVal)}
       />
-      <Input
-        label="Rate"
-        placeholder="Rate"
-        containerStyle={{ width, marginTop, marginLeft }}
-        value={currency.exchangeRate.toString()}
-        onChangeText={createChangeHandler('exchangeRate')}
-      />
-      
+      <Text style={styles.text}>{val ? 'Resultat:' : ''} {valResult} {val ? 'US $' : ''}</Text>
       <Button
-        onPress={back}
-        title="Zurück"
+        onPress={calculate}
+        title="umrechnen"
       ></Button>
     </ScrollView>
   );
