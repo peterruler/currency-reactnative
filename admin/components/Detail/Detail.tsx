@@ -6,17 +6,6 @@ import Currency from '../../../shared/models/Currency';
 import styles from './Detail.styles';
 
 export default function Form ({ route, navigation }) {
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    text: {
-      fontSize: 25,
-      fontWeight: '500',
-    },
-  });
-
   const width = 250;
   const marginTop = 20;
   const marginLeft = -10;
@@ -49,7 +38,7 @@ export default function Form ({ route, navigation }) {
 
   const calculate = () => {
     if(typeof val !== 'undefined') {
-      setValResult(currency.exchangeRate * val);
+      setValResult(val / currency.exchangeRate);
     }
   }
 
