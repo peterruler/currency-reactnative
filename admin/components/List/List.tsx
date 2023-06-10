@@ -14,7 +14,6 @@ export default function List({ navigation }) {
       const data = await response.json();
       let json, result, key;
       json = data.data;
-      console.log(JSON.stringify(json))
       result = [];
       for (key in json) {
         let str = {currencyCode:key, exchangeRate: json[key]}
