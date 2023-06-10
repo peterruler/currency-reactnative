@@ -1,5 +1,4 @@
 const CurrencyCountryMap = new Map<string | undefined,string | undefined>([
-
 ['AUD','Australische Dollar'],
 ['BGN','Bulgarischer Lew'],
 ['BRL','Brasilianischer Real'],
