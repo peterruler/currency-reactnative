@@ -49,5 +49,5 @@ see package.json
 
 # demo snack on expo
 
-- https://snack.expo.dev/@petethegreat/a805aa
+- https://snack.expo.dev/@petethegreat/currency-reactnative
 - see also: https://snack.expo.dev/@petethegreat/super-trumpf
