@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, StyleSheet, Text, View, TextInput } from 'react-native'
 import Currency from '../../../shared/models/Currency';
+import CurrencyCountryMap from '../../../shared/models/CurrencyMap';
 import styles from './List.styles';
 
 export default function List({ navigation }) {
@@ -13,6 +14,7 @@ export default function List({ navigation }) {
       const data = await response.json();
       let json, result, key;
       json = data.data;
+      console.log(JSON.stringify(json))
       result = [];
       for (key in json) {
         let str = {currencyCode:key, exchangeRate: json[key]}
@@ -35,13 +37,13 @@ export default function List({ navigation }) {
       style={styles.list}
       ItemSeparatorComponent={() => <View style={styles.separator} />}
       data={currencies.filter(currency =>
-        currency.currencyCode.toLowerCase().includes(filter.toLowerCase())
+        CurrencyCountryMap.get(currency.currencyCode).toLowerCase().includes(filter.toLowerCase())
       )}
       keyExtractor={item => item.currencyCode.toString()}
       renderItem={({ item }) => (
         <View style={styles.listItem}>
           <Text style={styles.headline}
-            onPress={() => navigation.navigate('Währungsrechner - Detail', { currencyCode: item.currencyCode, exchangeRate: item.exchangeRate })}>{item.currencyCode} - {item.exchangeRate} ></Text>
+            onPress={() => navigation.navigate('Währungsrechner - Detail', { currencyCode: item.currencyCode, exchangeRate: item.exchangeRate })}>{CurrencyCountryMap.get(item.currencyCode)} →</Text>
         </View>
       )}
     ></FlatList>
