@@ -14,8 +14,9 @@ export default function Form ({ route, navigation }) {
     currencyCode: '',
     exchangeRate: ''
   });
-  const [val, setVal] = useState();
-  const [valResult, setValResult] = useState();
+  const [val, setVal] = useState<number | null>();
+  const [valResult, setValResult] = useState<number | null>();
+  const [dir, setDir] = useState();
   
   /* 2. Get the param */
   const { currencyCode, exchangeRate} = route.params; // currencyCode: item.currencyCode, exchangeRate: item.exchangeRate 
@@ -38,25 +39,44 @@ export default function Form ({ route, navigation }) {
 
   const calculate = () => {
     if(typeof val !== 'undefined') {
-      setValResult(val / currency.exchangeRate);
+      if(dir) {
+        setValResult(val / currency.exchangeRate);
+      } else {
+        setValResult(currency.exchangeRate * val);
+      }
     }
   }
 
+  const switchDirection = () => {
+    setDir(!dir);
+    setVal(null);
+    setValResult(null);
+  }
+  
   return (
     <ScrollView style={styles.container}>
+       <Button
+        onPress={switchDirection}
+        title="umschalten"
+      ></Button>
+      {dir && 
       <Text style={styles.text}>{CurrencyCountryMap.get(currency.currencyCode)} in US Dollar mit Kurs {currency.exchangeRate.toString()}</Text>
+      }
+      {!dir && 
+      <Text style={styles.text}> US Dollar in {CurrencyCountryMap.get(currency.currencyCode)} mit Kurs {currency.exchangeRate.toString()}</Text>
+      }
       <Input
         label="Betrag"
         containerStyle={{ width, marginTop, marginLeft }}
-        defaultValue={val}
         onChangeText={
           newVal => setVal(newVal)}
       />
+      {dir && 
       <Text style={styles.text}>{val ? 'Resultat:' : ''} {valResult} {val ? 'US $' : ''}</Text>
-      <Button
-        onPress={calculate}
-        title="umrechnen"
-      ></Button>
+      }
+    {!dir && 
+      <Text style={styles.text}>{val ? 'Resultat:' : ''} {valResult} {val ? currency.currencyCode : ''}</Text>
+      }
     </ScrollView>
   );
 };
