@@ -72,10 +72,10 @@ export default function Form ({ route, navigation }) {
           newVal => setVal(newVal)}
       />
       {dir && 
-      <Text style={styles.text}>{val ? 'Resultat:' : ''} {valResult} {val ? 'US $' : ''}</Text>
+      <Text style={styles.text}>{val ? 'Resultat:' : ''} {valResult ? valResult : ''} {val ? 'US $' : ''}</Text>
       }
     {!dir && 
-      <Text style={styles.text}>{val ? 'Resultat:' : ''} {valResult} {val ? currency.currencyCode : ''}</Text>
+      <Text style={styles.text}>{val ? 'Resultat:' : ''} {valResult ? valResult : ''} {val ? currency.currencyCode : ''}</Text>
       }
     </ScrollView>
   );
