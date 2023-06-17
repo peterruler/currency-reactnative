@@ -5,8 +5,7 @@ import {
     Text,
     TouchableOpacity,
     Modal,
-    View,
-    ScrollView
+    View
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 
@@ -53,8 +52,6 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                     onPress={() => setVisible(false)}
                 >
 
-                    <ScrollView style={styles.scrollView}>
-
                         <View style={[styles.dropdown, { top: dropdownTop }]}>
                             <FlatList
                                 data={data}
@@ -62,7 +59,6 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                                 keyExtractor={(item, index) => index.toString()}
                             />
                         </View>
-                    </ScrollView>
                 </TouchableOpacity>
             </Modal>
         );
