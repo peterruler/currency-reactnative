@@ -2,13 +2,14 @@ export default class Currency {
     static properties: { [key: string]: { label: string; } } = {
       currencyCode: { label: 'Länder Code'},
       exchangeRate: { label: 'Wechselkurs'},
+      label: { label: 'Name'}
     };
   
-    public currencyCode?: string;
+    public currencyCode: string| undefined;
   
     constructor(
-      public currencyCode: string,
-      public exchangeRate: number | ''
+      public exchangeRate: number | '',
+      public label: string
     ) {}
   }
   
