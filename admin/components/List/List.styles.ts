@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,7 +41,19 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-  }
+  },
+  backdrop: {
+    paddingTop: Platform.OS === 'ios' ? 50 : 0,
+    flex: 1,
+    alignSelf: 'stretch',
+  },
+  overlay: {
+    paddingTop: 5,
+    backgroundColor: '',
+    opacity: 0.5,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
 });
 
 export default styles;

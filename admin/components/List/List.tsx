@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, Text, View, TextInput } from 'react-native'
+import { FlatList, Text, View, TextInput, ImageBackground } from 'react-native'
 import Currency from '../../../shared/models/Currency';
 import CurrencyCountryMap from '../../../shared/models/CurrencyMap';
 import styles from './List.styles';
@@ -24,7 +24,12 @@ export default function List({ navigation }) {
     fetchData();
   }, []);
   
-  return (<View>
+  return (
+    <ImageBackground
+    source={require('../../../img/money.png')}
+    imageStyle={{ resizeMode: 'cover', opacity:0.5 }}
+    style={styles.backdrop}>
+  <View style={styles.overlay}>
     <TextInput
       autoCapitalize="none"
       value={filter}
@@ -48,5 +53,6 @@ export default function List({ navigation }) {
       )}
     ></FlatList>
   </View>
+  </ImageBackground>
   );
 }
