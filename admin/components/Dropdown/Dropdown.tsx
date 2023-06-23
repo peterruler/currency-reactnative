@@ -5,7 +5,9 @@ import {
     Text,
     TouchableOpacity,
     Modal,
-    View
+    ScrollView,
+    StatusBar,
+    SafeAreaView
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 
@@ -51,14 +53,15 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
                     style={styles.overlay}
                     onPress={() => setVisible(false)}
                 >
-
-                        <View style={[styles.dropdown, { top: dropdownTop }]}>
+                    <SafeAreaView style={styles.container} >
+                        <ScrollView style={styles.scrollView}>
                             <FlatList
                                 data={data}
                                 renderItem={renderItem}
                                 keyExtractor={(item, index) => index.toString()}
                             />
-                        </View>
+                        </ScrollView>
+                    </SafeAreaView>
                 </TouchableOpacity>
             </Modal>
         );
@@ -80,6 +83,17 @@ const Dropdown: FC<Props> = ({ label, data, onSelect }) => {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: StatusBar.currentHeight,
+        position: 'relative',
+        backgroundColor: '#fff',
+        width: '100%',
+        shadowColor: '#000000',
+        shadowRadius: 4,
+        shadowOffset: { height: 4, width: 0 },
+        shadowOpacity: 0.5,
+    },
     button: {
         flexDirection: 'row',
         alignItems: 'center',

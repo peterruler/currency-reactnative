@@ -9,7 +9,7 @@ const CurrencyCountryMap = new Map<string | undefined,string | undefined>([
 ['DKK','Dänische Krone'],
 ['EUR','Euro'],
 ['GBP','Britische Pfund'],
-['HKD','Honkong Dollar'],
+['HKD','Hongkong Dollar'],
 ['HRK','Kroatische Kuna'],
 ['HUF','Ungarischer Forint'],
 ['IDR','Indonesische Rupiah'],
