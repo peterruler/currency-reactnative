@@ -27,9 +27,8 @@ export default function List({ navigation }) {
   return (
     <ImageBackground
     source={require('../../../img/money.png')}
-    imageStyle={{ resizeMode: 'cover', opacity:0.5 }}
+    imageStyle={{ resizeMode: 'cover', opacity:0.5, alignSelf: "flex-end" }}
     style={styles.backdrop}>
-  <View style={styles.overlay}>
     <TextInput
       autoCapitalize="none"
       value={filter}
@@ -37,7 +36,7 @@ export default function List({ navigation }) {
       placeholder="Suche"
       style={styles.search}
     />
-
+  <View style={styles.overlay}>
     <FlatList
       style={styles.list}
       ItemSeparatorComponent={() => <View style={styles.separator} />}
