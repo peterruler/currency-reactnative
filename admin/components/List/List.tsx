@@ -26,7 +26,7 @@ export default function List({ navigation }) {
   
   return (
     <ImageBackground
-    source={require('../../../img/money.png')}
+    source={require('../../../img/money.jpg')}
     imageStyle={{ resizeMode: 'cover', opacity:0.5, alignSelf: "flex-end" }}
     style={styles.backdrop}>
     <TextInput

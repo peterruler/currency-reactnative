@@ -30,7 +30,7 @@ export default function Form({ route, navigation }) {
       setCurrencies(data);
     }
     fetchData();
-  }, [currencyCode]);
+  }, [currencyCode,exchangeRate,label,result]);
 
   let data = [];
   useEffect(() => {
@@ -42,7 +42,8 @@ export default function Form({ route, navigation }) {
 
   useEffect(() => {
     calculate();
-  }, [val]);
+  });
+
 
   const calculate = () => {
     if (typeof val !== 'undefined') {
@@ -53,7 +54,6 @@ export default function Form({ route, navigation }) {
       }
     }
   }
-
   const switchDirection = () => {
     setDir(!dir);
     calculate();
@@ -100,5 +100,5 @@ export default function Form({ route, navigation }) {
         title="Richtung umschalten und Eingabe löschen"
       ></Button>
     </SafeAreaView>
-  );
-};
+  )
+}

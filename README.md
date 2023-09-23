@@ -6,6 +6,11 @@ install expo `yarn global add expo-cli`
 
 install dependencies via cmd-line, run: `yarn`
 
+# run locally for development
+
+- with expo without android sdk or XCode MacOS
+- `expo start --web`
+
 # run via expo webapp
 
  scan qr code with phone
@@ -13,12 +18,8 @@ install dependencies via cmd-line, run: `yarn`
 # emulator ios and/or android
 
 with android sdk and emulator, run (need android version e.g. 11, Emulator for e. g. pixel 2):
-
- 
  `expo start --android`
 
-
- `expo start --web`
 - install expo for current user & project: `yarn add expo-cli`
 - update expo: `/Users/$(whoami)/Documents/Projects/supertrumpf-reactnative/node_modules/expo-cli/bin/expo.js update 44.0.0`
 - on MacOS if not in path use: `/Users/$(whoami)/Documents/Projects/supertrumpf-reactnative/node_modules/expo-cli/bin/expo.js start --web`
