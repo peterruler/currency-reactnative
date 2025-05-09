@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     icon: {
         marginRight: 10,
     },
+    /*
     dropdown: {
         position: 'absolute',
         backgroundColor: '#fff',
@@ -117,6 +118,7 @@ const styles = StyleSheet.create({
         shadowOffset: { height: 4, width: 0 },
         shadowOpacity: 0.5,
     },
+    */
     overlay: {
         width: '100%',
         height: '100%',

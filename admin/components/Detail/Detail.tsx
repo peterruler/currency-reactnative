@@ -11,7 +11,7 @@ export default function Form({ route, navigation }) {
 
   const [currency, setCurrencies] = useState<Currency>({
     currencyCode: '',
-    exchangeRate: ''
+    exchangeRate: '',
   });
 
   const [val, setVal] = useState<number | ''>();
@@ -26,16 +26,24 @@ export default function Form({ route, navigation }) {
 
   useEffect(() => {
     async function fetchData() {
-      const data = { result: result, currencyCode: currencyCode, exchangeRate: exchangeRate, label: label }
+      const data = {
+        result: result,
+        currencyCode: currencyCode,
+        exchangeRate: exchangeRate,
+        label: label,
+      };
       setCurrencies(data);
     }
     fetchData();
-  }, [currencyCode,exchangeRate,label,result]);
+  }, [currencyCode, exchangeRate, label, result]);
 
   let data = [];
   useEffect(() => {
     for (let key in result) {
-      let obj = { label: `${result[key].label} - ${result[key].currencyCode}`, value: result[key].exchangeRate }
+      let obj = {
+        label: `${result[key].label} - ${result[key].currencyCode}`,
+        value: result[key].exchangeRate,
+      };
       data.push(obj);
     }
   });
@@ -43,7 +51,6 @@ export default function Form({ route, navigation }) {
   useEffect(() => {
     calculate();
   });
-
 
   const calculate = () => {
     if (typeof val !== 'undefined') {
@@ -53,52 +60,64 @@ export default function Form({ route, navigation }) {
         setValResult((val / currency.exchangeRate) * selected.value);
       }
     }
-  }
+  };
   const switchDirection = () => {
     setDir(!dir);
     calculate();
     setVal('');
     setValResult(0);
     input.current.clear();
-  }
+  };
 
   const round = (value, step) => {
     step || (step = 1.0);
     var inv = 1.0 / step;
     return Math.round(value * inv) / inv;
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
+      <Dropdown
+        label="Bitte erst Wärung wählen"
+        data={data}
+        onSelect={setSelected}
+      />
 
-      <Dropdown label="Bitte erst Wärung wählen" data={data} onSelect={setSelected} />
-
-      {dir &&
-        <Text style={styles.text}> {selected.label.split("-")[0]} in {currency.label}</Text>
-      }
-      {!dir &&
-        <Text style={styles.text}>{currency.label} in {selected.label.split("-")[0]}</Text>
-      }
+      {dir && (
+        <Text style={styles.text}>
+          {selected.label.split('-')[0]} in {currency.label}
+        </Text>
+      )}
+      {!dir && (
+        <Text style={styles.text}>
+          {currency.label} in {selected.label.split('-')[0]}
+        </Text>
+      )}
 
       <Input
         label="Betrag"
         ref={input}
-        onChangeText={newVal => setVal(newVal)}
+        onChangeText={(newVal) => setVal(newVal)}
         containerStyle={{ width, marginTop, marginLeft }}
         placeholder="Betrag eingeben"
       />
 
-      {dir &&
-        <Text style={styles.text}>{val ? 'Resultat:' : ''} {valResult ? round(valResult, 0.01) : ''} {val ? currency.currencyCode : ''}</Text>
-      }
-      {!dir &&
-        <Text style={styles.text}>{val ? 'Resultat:' : ''} {valResult ? round(valResult, 0.01) : ''} {val ? selected.label.split("-")[1] : ''}</Text>
-      }
+      {dir && (
+        <Text style={styles.text}>
+          {val ? 'Resultat:' : ''} {valResult ? round(valResult, 0.01) : ''}{' '}
+          {val ? currency.currencyCode : ''}
+        </Text>
+      )}
+      {!dir && (
+        <Text style={styles.text}>
+          {val ? 'Resultat:' : ''} {valResult ? round(valResult, 0.01) : ''}{' '}
+          {val ? selected.label.split('-')[1] : ''}
+        </Text>
+      )}
 
       <Button
         onPress={switchDirection}
-        title="Richtung umschalten und Eingabe löschen"
-      ></Button>
+        title="Richtung umschalten und Eingabe löschen"></Button>
     </SafeAreaView>
-  )
+  );
 }

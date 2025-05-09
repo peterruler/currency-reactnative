@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'stretch',
     justifyContent: 'center',
+    width: '100%',
   },
   overlay: {
     paddingTop: 5,
