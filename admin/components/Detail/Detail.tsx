@@ -62,7 +62,7 @@ export default function Form({ route, navigation }) {
     }
   };
   const switchDirection = () => {
-    setDir(!dir);
+    setDir(dir => !dir);
     calculate();
     setVal('');
     setValResult(0);
